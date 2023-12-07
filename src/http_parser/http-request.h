@@ -8,13 +8,13 @@
 
 #define MAX_FIELDS 10
 
-typedef struct HttpRequest_t
+typedef struct
 {
     Method method;
     Route route;
     Version version;
     Field fields[MAX_FIELDS];
     char *body;
-};
+} HttpRequest_t;
 
 #endif

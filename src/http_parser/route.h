@@ -1,9 +1,9 @@
-#ifndef VERSION_H
-#define VERISON_H
+#ifndef ROUTE_H
+#define ROUTE_H
 
-typedef struct Route
+typedef struct
 {
     char *value;
-};
+} Route;
 
 #endif

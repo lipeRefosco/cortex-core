@@ -1,9 +1,9 @@
 #ifndef VERSION_H
-#define VERISON_H
+#define VERSION_H
 
-typedef struct Version
+typedef struct
 {
     char *value;
-};
+} Version;
 
 #endif

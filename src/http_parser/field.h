@@ -1,10 +1,10 @@
-#ifndef VERSION_H
-#define VERISON_H
+#ifndef FIELD_H
+#define FIELD_H
 
-typedef struct Field
+typedef struct
 {
     char *key;
     char *value;
-};
+} Field;
 
 #endif
