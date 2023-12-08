@@ -11,7 +11,7 @@ typedef struct HttpResponse_t
 {
     Version version;
     Status status;
-    Field fields[MAX_FIELDS];
+    Field fields;
     char *body;
 };
 
