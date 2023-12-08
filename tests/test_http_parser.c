@@ -37,9 +37,9 @@ void test_http_parser_happy_path()
     expect.fields[1].value = "close";
     
     HttpRequest_t result;
-    // http_parser(&given, &result);
-
-    // assert(1);
+    http_parser(&given, &result);
+    
+    assert(1?1:0);
 }
 
 int main()
