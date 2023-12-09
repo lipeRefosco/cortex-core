@@ -43,7 +43,7 @@ char* test_http_compare_happy_path()
 {
     HttpRequest_t expect = referenceRequest;
 
-    assert(compareHttpRequest(&expect, &expect));
+    assert(compareHttpRequests(&expect, &expect));
     return "PASS!";
 }
 
@@ -54,7 +54,7 @@ char* test_http_compare_not_equal()
     HttpRequest_t req2 = referenceRequest;
     req2.route.value = "/teste-not-equal";
 
-    assert(compareHttpRequest(&req1, &req2) != 1);
+    assert(compareHttpRequests(&req1, &req2) != 1);
     return "PASS!";
 }
 

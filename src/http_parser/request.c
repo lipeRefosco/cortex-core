@@ -1,7 +1,7 @@
 #include "request.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 
 // int compareHttpRequest(
 //     HttpRequest_t *req1,

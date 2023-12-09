@@ -7,12 +7,12 @@
 
 #define MAX_FIELDS 10
 
-typedef struct HttpResponse_t
+typedef struct
 {
     Version version;
     Status status;
     Field fields;
     char *body;
-};
+} HttpResponse_t;
 
 #endif

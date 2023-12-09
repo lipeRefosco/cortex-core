@@ -1,8 +1,8 @@
-typedef struct Status
+typedef struct
 {
     int code;
     char *message;
-};
+} Status;
 
 
 enum {

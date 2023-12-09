@@ -17,6 +17,6 @@ typedef struct
     char *body;
 } HttpRequest_t;
 
-int compareHttpRequest(const HttpRequest_t *req1, const HttpRequest_t *req2);
+int compareHttpRequests(const HttpRequest_t *req1, const HttpRequest_t *req2);
 
 #endif
