@@ -11,11 +11,12 @@ mv "$test_folder/src" "$test_folder/cp_src"
 test_files=$(find "$test_folder" -type f -name "*.c" -not -path "*/cp_src/*")
 
 # list get module files
-module_files=$(find "$test_folder/cp_src" -type f)
-
+module_files=$(find "$test_folder/cp_src" -type f -name "*.c")
+echo $module_files
 # compile the each test
-for file in "$test_files"; do
+for file in $test_files; do
     echo
+    echo $file
     echo "Compiling $file file!"
     gcc $file $module_files -o "$file$output_ext"
     echo "................."
@@ -23,7 +24,7 @@ for file in "$test_files"; do
 done
 
 # run each test
-for file in "$test_files"; do
+for file in $test_files; do
     echo "Running the $file test!"
     $file$output_ext
     echo 
