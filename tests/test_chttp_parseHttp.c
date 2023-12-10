@@ -1,16 +1,47 @@
 #include "cp_src/chttp/request.h"
+#include "cp_src/chttp/httpParser/parseHttp.h"
 #include <stdio.h>
 #include <assert.h>
 
-char * test_http_parser_happy_path()
+// Criação da variável de teste usando as structs fornecidas
+HttpRequest_t expect;
+
+char * test_parseHttp_happy_path()
 {
-    char *given = "GET / HTTP/1.1\r\n"
+    char *givenRequest = "GET / HTTP/1.1\r\n"
                   "Host: your-api-endpoint\r\n"
                   "Connection: close\r\n"
                   "\r\n";
-    // Criação da variável de teste usando as structs fornecidas
-    HttpRequest_t expect;
+    
+    HttpRequest_t result;
+    parseHttp(&result, givenRequest);
+    
+    assert(compareHttpRequests(&expect, &result));
 
+    return "PASS!";
+}
+
+char * test_parseRequestLine_happy_path()
+{
+    char *givenRequestLine = "GET / HTTP/1.1\r\n";
+
+    HttpRequest_t expect;
+    expect.method.value = "GET";
+    expect.route.value = "/";
+    expect.version.value = "HTTP/1.1";
+
+    HttpRequest_t result;
+    
+    parseRequestLine(&result, givenRequestLine);
+
+    assert(compareHttpRequests(&expect, &result));
+    
+    return "PASS!";
+}
+
+
+void main()
+{
     // Preenchimento da variável de teste com os dados fornecidos
     expect.method.value = "GET";
     expect.route.value = "/";
@@ -25,16 +56,6 @@ char * test_http_parser_happy_path()
     // Corpo da requisição (vazio no exemplo)
     expect.body = "";
     
-    HttpRequest_t result;
-    parseHttp(&result, given);
-    
-    assert(compareHttpRequests(&expect, &result));
-
-    return "PASS!";
-}
-
-
-void main()
-{
-    printf("test_http_compare_happy_path: %s\n", test_http_parser_happy_path());
+    printf("test_parseHttp_happy_path: %s\n", test_parseHttp_happy_path());
+    printf("test_parseRequestLine_happy_path: %s\n", test_parseRequestLine_happy_path());
 }
