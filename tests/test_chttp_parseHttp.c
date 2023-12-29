@@ -8,10 +8,7 @@ HttpRequest_t expect;
 
 char * test_parseHttp_happy_path()
 {
-    char *givenRequest = "GET / HTTP/1.1\r\n"
-                  "Host: your-api-endpoint\r\n"
-                  "Connection: close\r\n"
-                  "\r\n";
+    char *givenRequest = "GET / HTTP/1.1\r\nHost: your-api-endpoint\r\nConnection: close\r\n\r\n";
     
     HttpRequest_t result;
     parseHttp(&result, givenRequest);
@@ -23,6 +20,7 @@ char * test_parseHttp_happy_path()
 
 char * test_parseRequestLine_happy_path()
 {
+    int needleState = 0;
     char *givenRequestLine = "GET / HTTP/1.1\r\n";
 
     HttpRequest_t expect;
@@ -31,8 +29,11 @@ char * test_parseRequestLine_happy_path()
     expect.version.value = "HTTP/1.1";
 
     HttpRequest_t result;
+    result.method.value = "";
+    result.route.value = "";
+    result.version.value = "";
     
-    parseRequestLine(&result, givenRequestLine);
+    parseRequestLine(&result, needleState, givenRequestLine);
 
     assert(compareHttpRequests(&expect, &result));
     
@@ -40,7 +41,7 @@ char * test_parseRequestLine_happy_path()
 }
 
 
-void main()
+int main()
 {
     // Preenchimento da variável de teste com os dados fornecidos
     expect.method.value = "GET";
@@ -56,6 +57,6 @@ void main()
     // Corpo da requisição (vazio no exemplo)
     expect.body = "";
     
-    printf("test_parseHttp_happy_path: %s\n", test_parseHttp_happy_path());
+    // printf("test_parseHttp_happy_path: %s\n", test_parseHttp_happy_path());
     printf("test_parseRequestLine_happy_path: %s\n", test_parseRequestLine_happy_path());
 }
