@@ -2,32 +2,38 @@
 test_folder=tests
 output_ext=".test.out"
 
-# copy the source file to the test folder
+# Copy the source file to the test folder
 rm -rf "$test_folder/cp_src"
 cp -rf src/ "$test_folder/"
 mv "$test_folder/src" "$test_folder/cp_src"
 
-# list get all test files
+# List get all test files
 test_files=$(find "$test_folder" -type f -name "*.c" -not -path "*/cp_src/*")
 
-# list get module files
+# List get module files
 module_files=$(find "$test_folder/cp_src" -type f -name "*.c")
 echo $module_files
-# compile the each test
+
+# Compile phase
+echo
+echo "--------- COMPILE PHASE ---------"
+echo
+
+# Compile the each test
 for file in $test_files; do
-    echo
-    echo $file
     echo "Compiling $file file!"
-    gcc $file $module_files -o "$file$output_ext"
-    echo "................."
-    echo
+    gcc -g $file $module_files -o "$file$output_ext" -Wno-pointer-to-int-cast
 done
 
-# run each test
+# Run the test phase
+echo 
+echo "--------- RUNNING PHASE ---------"
+echo 
+
+# Run each test
 for file in $test_files; do
-    echo "Running the $file test!"
-    $file$output_ext
     echo 
-    echo "................."
-    echo
+    echo "Running the $file test!"
+    echo 
+    $file$output_ext
 done
