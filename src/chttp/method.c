@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "method.h"
+#include "value.h"
 
 bool compareMethod(Method * a, Method * b) {
     if(strlen(a->value) != strlen(b->value)) return false;
@@ -18,9 +19,5 @@ bool compareMethod(Method * a, Method * b) {
 
 void setMethod(Method * target, char * input)
 {
-    int i = 0;
-    do {
-        target->value[i] = input[i];
-        i++;
-    } while(i <= strlen(target->value));
+    setValue(target->value, input);
 }
