@@ -6,11 +6,15 @@
 int i;
 int tgtSize;
 
-void setValue(char *target, char *input) {
+void setValue(char *target, char *input)
+{
     i = 0;
     tgtSize = strlen(target);
 
-    do {target[i] = input[i]; i++;} while (i < tgtSize);
+    do {
+        target[i] = input[i];
+        i++;
+    } while (i < tgtSize);
 }
 
 bool valueIsEqual(char *a, char *b) {

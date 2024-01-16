@@ -1,5 +1,5 @@
 #include <assert.h>
-#include <string.h>
+#include <stdbool.h>
 #include <stdio.h>
 
 #include "cp_src/chttp/value.h"
@@ -41,23 +41,42 @@ char* test_setValue_replace_value_on_array_length_less_than_input_length()
     char expect[4] = "CON";
     char result[4] = "   ";
 
-    // printf("%s\n", expect);
-    // printf("%s\n", result);
     setValue(result, "CONNECT");
-    // printf("%s\n", expect);
-    // printf("%s\n", result);
     
     assert(valueIsEqual(result, expect));
 
     return "PASS";
 }
 
+char* test_setValue_large_input()
+{
+    bool expect = true;
+    char given[8] = "CONNECT";
+    char result[8] = "       ";
+
+    setValue(result, "CONNECT");
+    assert(valueIsEqual(given, result) == expect);
+
+    return "PASS";
+}
+
 int main(void)
 {
-    printf("Testing test_setValue_happypath_with_same_length: %s\n", test_setValue_happypath_with_same_length());
-    printf("Testing test_setValue_happypath_with_different_length: %s\n", test_setValue_with_differents_lengths_but_same_value());
-    printf("Testing test_setValue_replace_value_with_same_array_langth: %s\n", test_setValue_replace_value_with_same_array_langth());
-    printf("Testing test_setValue_replace_value_on_array_length_less_than_input_length: %s\n", test_setValue_replace_value_on_array_length_less_than_input_length());
+    printf("Testing test_setValue_happypath_with_same_length: ");
+    printf("%s\n", test_setValue_happypath_with_same_length());
+
+    printf("Testing test_setValue_happypath_with_different_length: ");
+    printf("%s\n", test_setValue_with_differents_lengths_but_same_value());
+
+    printf("Testing test_setValue_replace_value_with_same_array_langth: ");
+    printf("%s\n", test_setValue_replace_value_with_same_array_langth());
+
+    printf("Testing test_setValue_replace_value_on_array_length_less_than_input_length: ");
+    printf("%s\n", test_setValue_replace_value_on_array_length_less_than_input_length());
+
+    printf("Testing test_setValue_large_input: ");
+    printf("%s\n", test_setValue_large_input());
+
 
     return 0;
 }
