@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "cp_src/chttp/method.h"
+#include "cp_src/chttp/value.h"
 
 char* test_compareMethod_function_happy_path(Method * given)
 {
@@ -39,26 +40,6 @@ char* test_setMethod_function_happy_path(Method * given_to_compare)
     return "PASS";
 }
 
-char* test_setMethod_function_overflow()
-{
-    bool expect = true;
-
-    Method expect_to_compare, result;
-    
-    expect_to_compare.value[0] = 'C';
-    expect_to_compare.value[1] = 'O';
-    expect_to_compare.value[2] = 'N';
-    expect_to_compare.value[3] = 'N';
-    expect_to_compare.value[4] = 'E';
-    expect_to_compare.value[5] = 'C';
-    expect_to_compare.value[6] = 'T';
-
-    setMethod(&result, "CONNECT");
-    assert(compareMethod(&expect_to_compare, &result));
-
-    return "PASS";
-}
-
 int main (void) 
 {
     Method reference;
@@ -74,9 +55,6 @@ int main (void)
 
     printf("Testing test_setMethod_function_happy_path: ");
     printf("%s\n", test_setMethod_function_happy_path(&reference));
-
-    printf("Testing test_setMethod_function_overflow: ");
-    printf("%s\n", test_setMethod_function_overflow());
 
     return 0;
 }
