@@ -28,12 +28,10 @@ done
 # Run the test phase
 echo 
 echo "--------- RUNNING PHASE ---------"
-echo 
 
 # Run each test
 for file in $test_files; do
     echo 
     echo "Running the $file test!"
-    echo 
     $file$output_ext
 done
