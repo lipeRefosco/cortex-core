@@ -26,7 +26,7 @@ char* test_setValue_with_differents_lengths_but_same_value()
     return "PASS";
 }
 
-char* test_setValue_replace_value_with_same_array_langth()
+char* test_setValue_replace_value_with_same_array_length()
 {
     char expect[8] = "GET";
     char result[8] = "CONNECT";
@@ -42,7 +42,7 @@ char* test_setValue_replace_value_on_array_length_less_than_input_length()
     char result[4] = "   ";
 
     setValue(result, "CONNECT");
-    
+
     assert(valueIsEqual(result, expect));
 
     return "PASS";
@@ -68,8 +68,8 @@ int main(void)
     printf("Testing test_setValue_happypath_with_different_length: ");
     printf("%s\n", test_setValue_with_differents_lengths_but_same_value());
 
-    printf("Testing test_setValue_replace_value_with_same_array_langth: ");
-    printf("%s\n", test_setValue_replace_value_with_same_array_langth());
+    printf("Testing test_setValue_replace_value_with_same_array_length: ");
+    printf("%s\n", test_setValue_replace_value_with_same_array_length());
 
     printf("Testing test_setValue_replace_value_on_array_length_less_than_input_length: ");
     printf("%s\n", test_setValue_replace_value_on_array_length_less_than_input_length());
